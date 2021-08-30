@@ -1,0 +1,370 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 500
+Job counts:
+	count	jobs
+	1	all
+	1	copy_data_files
+	1	create_arora_matrices
+	1	create_lin_matrices
+	1	create_lin_matrices_tmm
+	1	create_lin_matrices_tpm
+	1	create_lookup_table_for_expression
+	1	create_lookup_table_for_expression_original
+	1	create_sarantopoulou_lookup_table
+	1	create_sarantopoulou_matrices_counts
+	1	create_sarantopoulou_matrices_tmm
+	1	create_sarantopoulou_matrices_tpm
+	1	dowload_gtex_covariates
+	1	dowload_gtex_tpm_and_annotation
+	1	download_arora
+	1	download_gtex_bed
+	1	download_gtex_raw_counts
+	1	download_lin
+	1	download_mm9_gtf
+	1	download_sarantopoulou
+	1	get_mm9_name_id_conversion_table
+	21
+
+[Mon Aug 30 16:15:03 2021]
+rule download_gtex_raw_counts:
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/gtex/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.gct.gz, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/gtex/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/gtex/gencode.v26.GRCh38.genes.gtf, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/gtex_Whole_Blood_counts.txt
+    jobid: 8
+
+
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/gtex/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.gct.gz https://storage.googleapis.com/gtex_analysis_v8/rna_seq_data/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.gct.gz
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/gtex/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt https://storage.googleapis.com/gtex_analysis_v8/annotations/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/gtex/gencode.v26.GRCh38.genes.gtf https://storage.googleapis.com/gtex_analysis_v8/reference/gencode.v26.GRCh38.genes.gtf
+        
+        cd R
+        Rscript process_gtex_data_raw_counts.R /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/gtex/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.gct.gz /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/gtex/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices
+        
+Submitted job 8 with external jobid '32482037'.
+
+[Mon Aug 30 16:15:03 2021]
+rule download_lin:
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_5_57_HTSeq_raw_read_counts.txt.gz, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_6_01_HTSeq_raw_read_counts.txt.gz, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_GEO_run_summary.xlsx, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_dme5_57_ERCC.gtf.gz
+    jobid: 3
+
+
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_5_57_HTSeq_raw_read_counts.txt.gz https://ftp.ncbi.nlm.nih.gov/geo/series/GSE60nnn/GSE60314/suppl/GSE60314_5_57_HTSeq_raw_read_counts.txt.gz
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_6_01_HTSeq_raw_read_counts.txt.gz https://ftp.ncbi.nlm.nih.gov/geo/series/GSE60nnn/GSE60314/suppl/GSE60314_6_01_HTSeq_raw_read_counts.txt.gz
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_GEO_run_summary.xlsx https://ftp.ncbi.nlm.nih.gov/geo/series/GSE60nnn/GSE60314/suppl/GSE60314_GEO_run_summary.xlsx
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_dme5_57_ERCC.gtf.gz https://ftp.ncbi.nlm.nih.gov/geo/series/GSE60nnn/GSE60314/suppl/GSE60314_dme5_57_ERCC.gtf.gz
+        
+Submitted job 3 with external jobid '32482038'.
+
+[Mon Aug 30 16:15:04 2021]
+rule copy_data_files:
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_GEO_run_summary_metadata.txt, /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_nagarajan.txt
+    jobid: 15
+
+
+        cp ./data/GSE60314_GEO_run_summary_metadata.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_GEO_run_summary_metadata.txt
+        cp ./data/expression_datasets_nagarajan.txt /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_nagarajan.txt
+        
+Submitted job 15 with external jobid '32482039'.
+
+[Mon Aug 30 16:15:04 2021]
+rule download_gtex_bed:
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices_gtex_bed/Whole_Blood.v8.normalized_expression.bed.gz, /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_bed.txt
+    jobid: 9
+
+
+        # Downlad data
+        dir=$(dirname /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices_gtex_bed/Whole_Blood.v8.normalized_expression.bed.gz)
+        wget -O $dir/gtex.tar https://storage.googleapis.com/gtex_analysis_v8/single_tissue_qtl_data/GTEx_Analysis_v8_eQTL_expression_matrices.tar
+        tar -C $dir -xvf $dir/gtex.tar
+        mv $dir/GTEx_Analysis_v8_eQTL_expression_matrices/* $dir/
+        touch $dir/*tbi
+        rm -r $dir/GTEx_Analysis_v8_eQTL_expression_matrices/
+        rm $dir/gtex.tar
+        
+        # Make sample table
+        cd  $dir
+        for i in *gz
+        do
+            paste <(perl -pe 's/(.+?)\..+/$1/' <(echo $i)) <(echo expression_matrices_gtex_bed/$i)
+        done > /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_bed.txt.temp
+        cat <(echo -e 'group\tpath') /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_bed.txt.temp > /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_bed.txt && rm /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_bed.txt.temp
+        
+Submitted job 9 with external jobid '32482042'.
+
+[Mon Aug 30 16:15:06 2021]
+rule dowload_gtex_tpm_and_annotation:
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/gtex_Whole_Blood.txt, /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_sample_annotation_file_v8.txt, /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_tpm.txt
+    jobid: 10
+
+
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/temp/gtex.gz https://storage.googleapis.com/gtex_analysis_v8/rna_seq_data/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_tpm.gct.gz
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_sample_annotation_file_v8.txt https://storage.googleapis.com/gtex_analysis_v8/annotations/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+        
+        #cd R/; Rscript R/process_arora_data_gtex_table.txt /scratch/users/paedugar/transcriptome_diversity_2/temp/gtex.gz /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_sample_annotation_file_v8.txt /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_tpm.txt /scratch/users/paedugar/transcriptome_diversity_2 expression_matrices
+        cd R; Rscript process_gtex_data_original_tpm.R /scratch/users/paedugar/transcriptome_diversity_2/temp/gtex.gz /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_sample_annotation_file_v8.txt /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_tpm.txt /scratch/users/paedugar/transcriptome_diversity_2 expression_matrices
+        
+        rm /scratch/users/paedugar/transcriptome_diversity_2/temp/gtex.gz
+        
+Submitted job 10 with external jobid '32482043'.
+
+[Mon Aug 30 16:15:08 2021]
+rule download_arora:
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/arora/OriginalTCGAGTExData/file_md5sums.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/arora/OriginalTCGAGTExData/SE_objects/gtex_mskcc_batch_log2_TPM.RData
+    jobid: 1
+
+
+        cd /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/arora
+        
+        wget --recursive -nH --cut-dirs=1 https://s3-us-west-2.amazonaws.com/fh-pi-holland-e/OriginalTCGAGTExData/index.html
+        
+Submitted job 1 with external jobid '32482045'.
+
+[Mon Aug 30 16:15:08 2021]
+rule download_mm9_gtf:
+    output: /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.gtf.gz
+    jobid: 18
+
+
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.gtf.gz ftp://ftp.ensembl.org/pub/release-67/gtf/mus_musculus/Mus_musculus.NCBIM37.67.gtf.gz
+        
+Submitted job 18 with external jobid '32482046'.
+
+[Mon Aug 30 16:15:10 2021]
+rule dowload_gtex_covariates:
+    output: /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt
+    jobid: 11
+
+
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/temp/covariates_gtex.tar.gz https://storage.googleapis.com/gtex_analysis_v8/single_tissue_qtl_data/GTEx_Analysis_v8_eQTL_covariates.tar.gz
+        
+        tar -C $(dirname /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt) -xvzf /scratch/users/paedugar/transcriptome_diversity_2/temp/covariates_gtex.tar.gz
+        
+        mv $(dirname /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt)/GTEx_Analysis_v8_eQTL_covariates/* $(dirname /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt)
+        
+        rm /scratch/users/paedugar/transcriptome_diversity_2/temp/covariates_gtex.tar.gz
+        rm -r $(dirname /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt)/GTEx_Analysis_v8_eQTL_covariates/
+        
+Submitted job 11 with external jobid '32482047'.
+
+[Mon Aug 30 16:15:10 2021]
+rule download_sarantopoulou:
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.V4.txt.gz, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Pico.R.txt.gz, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Truseq.txt.gz
+    jobid: 20
+
+
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.V4.txt.gz https://ftp.ncbi.nlm.nih.gov/geo/series/GSE124nnn/GSE124167/suppl/GSE124167_FINAL_master_list_of_gene_counts_MIN.V4.txt.gz
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Pico.R.txt.gz https://ftp.ncbi.nlm.nih.gov/geo/series/GSE124nnn/GSE124167/suppl/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Pico.R.txt.gz
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Truseq.txt.gz https://ftp.ncbi.nlm.nih.gov/geo/series/GSE124nnn/GSE124167/suppl/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Truseq.txt.gz
+        
+Submitted job 20 with external jobid '32482048'.
+[Mon Aug 30 16:16:18 2021]
+Finished job 3.
+1 of 21 steps (5%) done
+[Mon Aug 30 16:17:32 2021]
+Error in rule download_arora:
+    jobid: 1
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/arora/OriginalTCGAGTExData/file_md5sums.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/arora/OriginalTCGAGTExData/SE_objects/gtex_mskcc_batch_log2_TPM.RData
+    shell:
+        
+        cd /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/arora
+        
+        wget --recursive -nH --cut-dirs=1 https://s3-us-west-2.amazonaws.com/fh-pi-holland-e/OriginalTCGAGTExData/index.html
+        
+        (exited with non-zero exit code)
+    cluster_jobid: 32482045
+
+Error executing rule download_arora on cluster (jobid: 1, external: 32482045, jobscript: /home/users/paedugar/scripts/FraserLab/transcriptome_diveristy_paper/pipelines/.snakemake/tmp.x_64a1sf/snakejob.download_arora.1.sh). For detailed error see the cluster log.
+Job failed, going on with independent jobs.
+[Mon Aug 30 16:17:32 2021]
+Finished job 18.
+2 of 21 steps (10%) done
+
+[Mon Aug 30 16:17:32 2021]
+rule get_mm9_name_id_conversion_table:
+    input: /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.gtf.gz
+    output: /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.id_converstion_table.txt
+    jobid: 14
+
+
+        zcat /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.gtf.gz | grep gene_id | perl -pe 's/.+gene_id "(.+?)".+gene_name "(.+?)".+/\1\t\2/g' | sort | uniq > /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.id_converstion_table.txt.temp
+        cat <(echo -e "gene_id	gene_name") /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.id_converstion_table.txt.temp > /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.id_converstion_table.txt 
+        rm /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.id_converstion_table.txt.temp
+        
+[Mon Aug 30 16:17:33 2021]
+Error in rule dowload_gtex_covariates:
+    jobid: 11
+    output: /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt
+    shell:
+        
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/temp/covariates_gtex.tar.gz https://storage.googleapis.com/gtex_analysis_v8/single_tissue_qtl_data/GTEx_Analysis_v8_eQTL_covariates.tar.gz
+        
+        tar -C $(dirname /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt) -xvzf /scratch/users/paedugar/transcriptome_diversity_2/temp/covariates_gtex.tar.gz
+        
+        mv $(dirname /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt)/GTEx_Analysis_v8_eQTL_covariates/* $(dirname /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt)
+        
+        rm /scratch/users/paedugar/transcriptome_diversity_2/temp/covariates_gtex.tar.gz
+        rm -r $(dirname /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_v8_eQTL_covariates/Whole_Blood.v8.covariates.txt)/GTEx_Analysis_v8_eQTL_covariates/
+        
+        (exited with non-zero exit code)
+    cluster_jobid: 32482047
+
+Error executing rule dowload_gtex_covariates on cluster (jobid: 11, external: 32482047, jobscript: /home/users/paedugar/scripts/FraserLab/transcriptome_diveristy_paper/pipelines/.snakemake/tmp.x_64a1sf/snakejob.dowload_gtex_covariates.11.sh). For detailed error see the cluster log.
+Job failed, going on with independent jobs.
+[Mon Aug 30 16:17:33 2021]
+Finished job 20.
+3 of 21 steps (14%) done
+Submitted job 14 with external jobid '32482077'.
+
+[Mon Aug 30 16:17:34 2021]
+rule create_sarantopoulou_matrices_counts:
+    input: /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.V4.txt.gz, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Pico.R.txt.gz, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Truseq.txt.gz
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_cov.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_cov.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_cov.txt
+    jobid: 19
+
+
+        cd R
+        Rscript process_sarantopoulou_create_expression_and_covariates.R /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.V4.txt.gz /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_cov.txt
+        Rscript process_sarantopoulou_create_expression_and_covariates.R /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Pico.R.txt.gz /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_cov.txt
+        Rscript process_sarantopoulou_create_expression_and_covariates.R /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/sarantopoulou/GSE124167_FINAL_master_list_of_gene_counts_MIN.sense.Truseq.txt.gz /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_cov.txt
+        
+Submitted job 19 with external jobid '32482078'.
+[Mon Aug 30 16:18:24 2021]
+Finished job 15.
+4 of 21 steps (19%) done
+
+[Mon Aug 30 16:18:24 2021]
+rule create_lin_matrices:
+    input: /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_5_57_HTSeq_raw_read_counts.txt.gz, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_GEO_run_summary_metadata.txt
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_counts.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_covariates.txt
+    jobid: 4
+
+
+        cd R; Rscript process_lin_create_expression.R /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_5_57_HTSeq_raw_read_counts.txt.gz /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_GEO_run_summary_metadata.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_counts.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_covariates.txt
+        
+[Mon Aug 30 16:18:25 2021]
+Error in rule dowload_gtex_tpm_and_annotation:
+    jobid: 10
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/gtex_Whole_Blood.txt, /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_sample_annotation_file_v8.txt, /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_tpm.txt
+    shell:
+        
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/temp/gtex.gz https://storage.googleapis.com/gtex_analysis_v8/rna_seq_data/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_tpm.gct.gz
+        wget -O /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_sample_annotation_file_v8.txt https://storage.googleapis.com/gtex_analysis_v8/annotations/GTEx_Analysis_v8_Annotations_SampleAttributesDS.txt
+        
+        #cd R/; Rscript R/process_arora_data_gtex_table.txt /scratch/users/paedugar/transcriptome_diversity_2/temp/gtex.gz /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_sample_annotation_file_v8.txt /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_tpm.txt /scratch/users/paedugar/transcriptome_diversity_2 expression_matrices
+        cd R; Rscript process_gtex_data_original_tpm.R /scratch/users/paedugar/transcriptome_diversity_2/temp/gtex.gz /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/GTEx_Analysis_sample_annotation_file_v8.txt /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_gtex_tpm.txt /scratch/users/paedugar/transcriptome_diversity_2 expression_matrices
+        
+        rm /scratch/users/paedugar/transcriptome_diversity_2/temp/gtex.gz
+        
+        (exited with non-zero exit code)
+    cluster_jobid: 32482043
+
+Error executing rule dowload_gtex_tpm_and_annotation on cluster (jobid: 10, external: 32482043, jobscript: /home/users/paedugar/scripts/FraserLab/transcriptome_diveristy_paper/pipelines/.snakemake/tmp.x_64a1sf/snakejob.dowload_gtex_tpm_and_annotation.10.sh). For detailed error see the cluster log.
+Job failed, going on with independent jobs.
+Submitted job 4 with external jobid '32482086'.
+[Mon Aug 30 16:19:47 2021]
+Finished job 14.
+5 of 21 steps (24%) done
+[Mon Aug 30 16:20:00 2021]
+Finished job 19.
+6 of 21 steps (29%) done
+
+[Mon Aug 30 16:20:00 2021]
+rule create_sarantopoulou_matrices_tmm:
+    input: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq.txt
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_tmm.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_tmm.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_tmm.txt
+    jobid: 16
+
+
+        cd R
+        Rscript get_tmm.R /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_tmm.txt
+        Rscript get_tmm.R /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_tmm.txt
+        Rscript get_tmm.R /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_tmm.txt
+        
+Submitted job 16 with external jobid '32482093'.
+
+[Mon Aug 30 16:20:01 2021]
+rule create_sarantopoulou_matrices_tpm:
+    input: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq.txt, /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.gtf.gz
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_tpm.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_tpm.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_tpm.txt
+    jobid: 17
+
+
+        cd R
+        Rscript get_TPM.R /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4.txt /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.gtf.gz /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_tpm.txt
+        Rscript get_TPM.R /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico.txt /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.gtf.gz /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_tpm.txt
+        Rscript get_TPM.R /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq.txt /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/Mus_musculus.NCBIM37.67.gtf.gz /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_tpm.txt
+        
+Submitted job 17 with external jobid '32482094'.
+[Mon Aug 30 16:20:31 2021]
+Finished job 9.
+7 of 21 steps (33%) done
+[Mon Aug 30 16:20:42 2021]
+Finished job 4.
+8 of 21 steps (38%) done
+
+[Mon Aug 30 16:20:42 2021]
+rule create_lin_matrices_tpm:
+    input: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_counts.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_dme5_57_ERCC.gtf.gz
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin.txt
+    jobid: 5
+
+
+        cd R; Rscript get_TPM.R /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_counts.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_dme5_57_ERCC.gtf.gz /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin.txt
+        
+Submitted job 5 with external jobid '32482104'.
+
+[Mon Aug 30 16:20:42 2021]
+rule create_lin_matrices_tmm:
+    input: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_counts.txt
+    output: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_tmm.txt
+    jobid: 6
+
+
+        cd R; Rscript get_tmm.R /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_counts.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_tmm.txt
+        
+Submitted job 6 with external jobid '32482105'.
+[Mon Aug 30 16:22:15 2021]
+Finished job 16.
+9 of 21 steps (43%) done
+[Mon Aug 30 16:22:59 2021]
+Finished job 6.
+10 of 21 steps (48%) done
+[Mon Aug 30 16:25:02 2021]
+Finished job 5.
+11 of 21 steps (52%) done
+[Mon Aug 30 16:35:51 2021]
+Finished job 8.
+12 of 21 steps (57%) done
+[Mon Aug 30 16:37:32 2021]
+Finished job 17.
+13 of 21 steps (62%) done
+
+[Mon Aug 30 16:37:32 2021]
+rule create_sarantopoulou_lookup_table:
+    input: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_tmm.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_tpm.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_tpm.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_tmm.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_tmm.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_tpm.txt
+    output: /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_sarantopoulou.txt
+    jobid: 7
+
+
+        cd R
+        Rscript process_sarantopoulou_create_lookup_table.R /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_sarantopoulou.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_tmm.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_v4_tpm.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_tpm.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_pico_tmm.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_tmm.txt /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/sarantopoulou_truseq_tpm.txt
+        
+Submitted job 7 with external jobid '32483835'.
+[Mon Aug 30 16:40:13 2021]
+Finished job 7.
+14 of 21 steps (67%) done
+
+[Mon Aug 30 16:40:13 2021]
+rule create_lookup_table_for_expression:
+    input: /scratch/users/paedugar/transcriptome_diversity_2/expression_matrices/lin_counts.txt, /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_sarantopoulou.txt, /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_nagarajan.txt, /scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/gtex/GTEx_Analysis_2017-06-05_v8_RNASeQCv1.1.9_gene_reads.gct.gz
+    output: /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_raw_counts.txt
+    jobid: 12
+
+
+        Rscript R/create_lookup_table_for_raw_counts.R /scratch/users/paedugar/transcriptome_diversity_2 expression_matrices auxiliary_files expression_datasets /scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_raw_counts.txt
+        
+Submitted job 12 with external jobid '32483868'.
+[Mon Aug 30 16:42:35 2021]
+Finished job 12.
+15 of 21 steps (71%) done
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/users/paedugar/scripts/FraserLab/transcriptome_diveristy_paper/pipelines/.snakemake/log/2021-08-30T161503.113900.snakemake.log

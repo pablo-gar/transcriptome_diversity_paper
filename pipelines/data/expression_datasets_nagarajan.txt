@@ -1,0 +1,3 @@
+id	name	path	group	subgroup	method	count_type	tissue
+nagarajan_tpm	nagarajan_tpm	/scratch/users/paedugar/transcriptome_diversity/expression_matrices/nagarajan_tpm.txt	nagarajan	nagarajan	nagarajan	TPM	cell_line_MCF7
+nagarajan_tmm	nagarajan_tmm	/scratch/users/paedugar/transcriptome_diversity/expression_matrices/nagarajan_tmm.txt	nagarajan	nagarajan	nagarajan	TMM	cell_line_MCF7

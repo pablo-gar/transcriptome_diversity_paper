@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 76 of /home/users/paedugar/scripts/FraserLab/transcriptome_diveristy_paper/pipelines/Snakefile_download_datasets.smk:
+Missing input files for rule create_lookup_table_for_expression:
+/scratch/users/paedugar/transcriptome_diversity_2/auxiliary_files/expression_datasets_nagarajan.txt

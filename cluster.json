@@ -1,0 +1,63 @@
+{
+    "__default__":
+    {
+        "partition" : "hbfraser,owners,hns,normal",
+        "time" : "02:00:00",
+        "mem" : "8G",
+        "cpus" : "1",
+        "jobname" : "{rule}.{wildcards}",
+        "error" : "/scratch/users/paedugar/transcriptome_diversity/cluster_files/{rule}.{wildcards}.err",
+        "output" : "/scratch/users/paedugar/transcriptome_diversity/cluster_files/{rule}.{wildcards}.out"
+    },
+    
+    "perform_eqtl_as_paper_keele":
+    {
+        "time": "8:00:00"
+    },
+    
+    "perform_PCA_arora":
+    {
+        "mem": "64G",
+        "time": "8:00:00"
+    },
+    
+    "create_keele_vcfs":
+    {
+        "mem": "64G"
+    },
+    
+    "create_arora_matrices":
+    {
+        "mem": "16G"
+    },
+    
+    "get_PEER":
+    {
+        "mem": "16G",
+        "time": "4:00:00"
+    },
+    
+    "join_gtex_eqtl_results":
+    {
+        "mem": "64G",
+        "time": "72:00:00"
+    },
+    
+    "download_gtex_raw_counts":
+    {
+        "mem": "16G",
+        "time": "6:00:00"
+    },
+    
+    "PEER_normalized_gene_var_explained":
+    {
+        "mem": "8G",
+        "time": "6:00:00"
+    },
+    
+    "PEER_gene_var_explained":
+    {
+        "mem": "8G",
+        "time": "6:00:00"
+    }
+}

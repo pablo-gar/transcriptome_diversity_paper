@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 235 of /home/users/paedugar/scripts/FraserLab/transcriptome_diveristy_paper/pipelines/Snakefile_download_datasets.smk:
+Missing input files for rule create_lin_matrices:
+/scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/lin/GSE60314_GEO_run_summary_metadata.txt

@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 308 of /home/users/paedugar/scripts/FraserLab/transcriptome_diveristy_paper/pipelines/Snakefile_download_datasets.smk:
+Missing input files for rule uncompress_keele_geo:
+/scratch/users/paedugar/transcriptome_diversity_2/expression_datasets/keele/data_all/GSE140872_RAW.tar

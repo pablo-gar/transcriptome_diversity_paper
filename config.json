@@ -1,0 +1,32 @@
+{
+    "Title" : "Snakefile config file for transcriptome diversity project",
+    
+    "projectDir": "/scratch/users/paedugar/transcriptome_diversity_2",
+    
+    "temp": "temp",
+    
+    "expression_datasets_dir": "expression_datasets",
+    "expression_matrices_dir" : "expression_matrices",
+    "expression_datasets_gtex_bed_dir" : "expression_matrices_gtex_bed",
+    "expression_matrices_processed_dir" : "expression_matrices_processed",
+    "expression_associations_dir" : "expression_associations",
+    "differential_expression_dir" : "differential_expression",
+    "transcriptome_diversity_dir" : "transcriptome_diversity",
+    "PEER_dir" : "PEER_covariates",
+    "eqtl_dir" : "eqtl_results",
+    
+    
+    "auxiliary_Files": {
+        "Description": "All necessary extra files needed to run all software",
+        "dir": "auxiliary_files",
+        "expression_matrix_files": "expression_datasets.txt",
+        "expression_matrix_files_gtex_bed": "expression_datasets_gtex_bed.txt",
+        "expression_matrix_files_gtex_tpm": "expression_datasets_gtex_tpm.txt",
+        "expression_matrix_files_for_expression_associations": "expression_datasets_raw_counts.txt",
+        "gtexPeerV8Dir": "GTEx_Analysis_v8_eQTL_covariates/",
+        "sample_annotationV8_GTEx": "GTEx_Analysis_sample_annotation_file_v8.txt",
+        "gtf_file" : "Homo_sapiens.GRCh37.87.gtf"
+    }
+    
+    
+}
