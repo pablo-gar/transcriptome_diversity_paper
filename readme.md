@@ -33,7 +33,7 @@ For a complete description of the methods and results please refer to the public
 	- tidyr
 
 
-## Setting up workingpath
+## Setting up working path
 
 Modify the file `config.json`, all buckets should be self-explanatory. The file is setup as it was used for the original study, which was run on the Sherlock cluster at Stanford University.
 
